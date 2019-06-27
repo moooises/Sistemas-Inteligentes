@@ -1,0 +1,49 @@
+[System]
+Name='Moises_Guerrero_Lopez'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=2
+NumRules=5
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='Densidad_de_Peatones'
+Range=[0 30]
+NumMFs=2
+MF1='Baja':'trapmf',[0 0 5 15]
+MF2='Significativa':'trapmf',[5 20 30 30]
+
+[Input2]
+Name='Densidad_de_Trafico'
+Range=[0 45]
+NumMFs=3
+MF1='Nula':'trapmf',[0 0 5 15]
+MF2='Moderada':'trapmf',[5 15 20 45]
+MF3='Intensa':'trapmf',[15 25 45 45]
+
+[Output1]
+Name='Color_de_semaforo'
+Range=[0 1]
+NumMFs=2
+MF1='Verde':'trimf',[-1 0 1]
+MF2='Roja':'trimf',[0 1 2]
+
+[Output2]
+Name='Tiempo'
+Range=[0 65]
+NumMFs=3
+MF1='Corta':'trapmf',[0 0 15 25]
+MF2='Media':'trapmf',[15 25 45 65]
+MF3='Larga':'trapmf',[45 65 65 65]
+
+[Rules]
+1 1, 2 1 (1) : 1
+1 -1, 1 3 (1) : 1
+2 2, 2 1 (1) : 1
+2 3, 1 1 (1) : 1
+2 1, 2 2 (1) : 1
